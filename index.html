@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MSCA IRP16 | Time Series Forecasting & Explainability</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --accent: #f59e0b;
+            --dark: #0f172a;
+            --gray-700: #334155;
+            --gray-500: #64748b;
+            --gray-200: #e2e8f0;
+            --gray-100: #f1f5f9;
+            --background: #f8fafc;
+            --white: #ffffff;
+            --msca-blue: #0052cc;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--background);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background: var(--dark);
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar a { color: var(--white); text-decoration: none; font-weight: 600; }
+        .navbar-links { display: flex; gap: 20px; }
+        .navbar-links a { color: #94a3b8; font-size: 14px; font-weight: 400; }
+        .navbar-links a:hover { color: var(--white); }
+
+        .hero {
+            background: linear-gradient(135deg, var(--msca-blue), #003d99);
+            color: var(--white);
+            padding: 60px 24px;
+        }
+
+        .hero-content { max-width: 900px; margin: 0 auto; }
+        .hero .project-id { font-size: 14px; opacity: 0.8; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+        .hero h1 { font-size: 32px; margin-bottom: 12px; }
+        .hero .subtitle { font-size: 18px; opacity: 0.9; margin-bottom: 20px; }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 24px; }
+
+        .section {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .section h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h2 .icon {
+            width: 28px;
+            height: 28px;
+            background: var(--msca-blue);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 14px;
+        }
+
+        .section p { color: var(--gray-700); margin-bottom: 12px; }
+
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .research-card {
+            background: var(--gray-100);
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .research-card h3 { font-size: 16px; font-weight: 600; color: var(--msca-blue); margin-bottom: 8px; }
+        .research-card p { font-size: 14px; color: var(--gray-700); margin: 0; }
+
+        .data-list {
+            list-style: none;
+        }
+
+        .data-list li {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .data-list li:last-child { border-bottom: none; }
+
+        .tag {
+            background: var(--gray-100);
+            color: var(--gray-700);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .notebook-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 12px;
+        }
+
+        .notebook-item {
+            background: var(--gray-100);
+            padding: 16px;
+            border-radius: 8px;
+        }
+
+        .notebook-item h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+        .notebook-item p { font-size: 12px; color: var(--gray-500); margin: 0; }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: var(--msca-blue);
+            color: var(--white);
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+        .btn:hover { background: #003d99; }
+
+        .footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--gray-500);
+            font-size: 13px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 24px; }
+            .research-grid, .notebook-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="https://lennartjohnbaals.github.io/">Lennart John Baals</a>
+        <div class="navbar-links">
+            <a href="https://lennartjohnbaals.github.io/">Portfolio</a>
+            <a href="https://github.com/LennartJohnBaals/MSCA_IRP16">GitHub</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <div class="project-id">Marie Sklodowska-Curie Actions - IRP16</div>
+            <h1>Time Series Forecasting & Explainability in Financial Markets</h1>
+            <p class="subtitle">Interpretable machine learning for financial time series prediction</p>
+            <div class="hero-badge">
+                <span>Website:</span>
+                <a href="https://www.digital-finance-msca.com" style="color: white; text-decoration: underline;">www.digital-finance-msca.com</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="section">
+            <h2><span class="icon">O</span> Overview</h2>
+            <p>
+                This research project, conducted under the Marie Sklodowska-Curie Actions program, investigates
+                advanced time series forecasting methods for financial markets with a strong emphasis on
+                model interpretability and explainability.
+            </p>
+            <p>
+                We develop and evaluate gradient-based explainability techniques, Local Polynomial Density (LPD)
+                estimators, and transformer-based models (BERT) for understanding and predicting financial
+                market dynamics.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2><span class="icon">R</span> Research Areas</h2>
+            <div class="research-grid">
+                <div class="research-card">
+                    <h3>Local Polynomial Density (LPD)</h3>
+                    <p>Non-parametric density estimation for financial return distributions and tail risk analysis.</p>
+                </div>
+                <div class="research-card">
+                    <h3>Gradient-based Explainability</h3>
+                    <p>SHAP, Integrated Gradients, and attribution methods for understanding model predictions.</p>
+                </div>
+                <div class="research-card">
+                    <h3>BERT for Finance</h3>
+                    <p>Transformer-based models for financial text analysis and sentiment-driven prediction.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2><span class="icon">D</span> Data Sources</h2>
+            <ul class="data-list">
+                <li>
+                    <span>SPY Hourly Data</span>
+                    <span class="tag">High-Frequency</span>
+                </li>
+                <li>
+                    <span>S&P 500 Historical</span>
+                    <span class="tag">Daily</span>
+                </li>
+                <li>
+                    <span>Economic Indicators</span>
+                    <span class="tag">Macro</span>
+                </li>
+                <li>
+                    <span>Financial News Corpus</span>
+                    <span class="tag">Text</span>
+                </li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2><span class="icon">N</span> Notebooks</h2>
+            <div class="notebook-grid">
+                <div class="notebook-item">
+                    <h4>01_data_preparation.ipynb</h4>
+                    <p>Data loading, cleaning, and feature engineering</p>
+                </div>
+                <div class="notebook-item">
+                    <h4>02_lpd_analysis.ipynb</h4>
+                    <p>Local polynomial density estimation</p>
+                </div>
+                <div class="notebook-item">
+                    <h4>03_model_training.ipynb</h4>
+                    <p>Time series model training and validation</p>
+                </div>
+                <div class="notebook-item">
+                    <h4>04_explainability.ipynb</h4>
+                    <p>Gradient-based feature attribution</p>
+                </div>
+                <div class="notebook-item">
+                    <h4>05_bert_experiments.ipynb</h4>
+                    <p>Transformer-based text analysis</p>
+                </div>
+                <div class="notebook-item">
+                    <h4>06_results_analysis.ipynb</h4>
+                    <p>Results visualization and comparison</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2><span class="icon">L</span> Related Projects</h2>
+            <p>
+                This project is part of the broader MSCA Digital Finance research program. See also:
+            </p>
+            <ul style="list-style: none; margin-top: 12px;">
+                <li style="margin-bottom: 8px;">
+                    <a href="https://lennartjohnbaals.github.io/MSCA_IRP17/" style="color: var(--msca-blue); text-decoration: none; font-weight: 500;">
+                        MSCA IRP17 - Mean-Variance Optimization Research
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="https://github.com/LennartJohnBaals/MSCA_IRP16" class="btn">
+                View on GitHub
+            </a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 Lennart John Baals | <a href="https://lennartjohnbaals.github.io/" style="color: var(--primary);">Back to Portfolio</a></p>
+    </footer>
+</body>
+</html>
